@@ -3,6 +3,7 @@ on:
     push:
         branches:
             - main
+    workflow_dispatch:
 
 permissions:
     contents: read
@@ -24,17 +25,17 @@ jobs:
             - name: Configure python
               uses: actions/setup-python@v5
               with:
-                python-version: "3.x"
+                  python-version: "3.x"
 
             # Installe zensical.
             - name: Installation de Zensical
               run: |
-                    pip install zensical
+                  pip install zensical
 
-            # Push sur github pages après compilation.
+                # Push sur github pages après compilation.
             - name: Construction de la page via Zensical
               run: |
-                    zensical build
+                  zensical build
 
             # Action de page à utiliser pour migrer la page.
             - name: Setup de la page

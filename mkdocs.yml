@@ -30,8 +30,8 @@ theme:
 
     # Contenu du site.
     features:
+        - navigation.indexes
         - navigation.top
-        - content.code.copy
 
 # Liaison CSS.
 extra_css:
