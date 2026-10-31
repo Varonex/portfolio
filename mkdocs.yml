@@ -30,8 +30,25 @@ theme:
 
     # Contenu du site.
     features:
+        # Navigation avancée.
         - navigation.indexes
         - navigation.top
+        - navigation.instant
+        - navigation.tracking
+        - navigation.tabs
+        - navigation.tabs.sticky
+        - navigation.sections
+        - navigation.expand
+        - navigation.path
+
+        # Amélioration sommaire.
+        - toc.integrate
+        - toc.follow
+
+        # Blocs de code.
+        - content.code.copy
+        - content.code.select
+        - content.code.annotate
 
 # Liaison CSS.
 extra_css:
@@ -46,4 +63,4 @@ extra:
     generator: false
 
 nav:
-    - Home: index.md
+    - Home: home.md
