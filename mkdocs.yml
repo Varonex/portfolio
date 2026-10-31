@@ -50,6 +50,11 @@ theme:
         - content.code.select
         - content.code.annotate
 
+        # Barre de recherche.
+        - search.suggest
+        - search.highlight
+        - search.share
+
 # Liaison CSS.
 extra_css:
     - css/style.css
