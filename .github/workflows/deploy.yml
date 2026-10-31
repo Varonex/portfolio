@@ -5,40 +5,56 @@ on:
             - main
 
 permissions:
-    contents: write
+    contents: read
+    pages: write
+    id-token: write
 
 jobs:
-    deploy:
+    build:
         runs-on: ubuntu-latest
         steps:
             # Récupère dans le runner virtuel.
-            - name: Checkout repo
-              uses: actions/checkout@v4
+            -   name: Checkout repo
+                uses: actions/checkout@v4
 
             # Configure python 3x.
-            - name: Configure python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.x"
+            -   name: Configure python
+                uses: actions/setup-python@v5
+                with:
+                    python-version: "3.x"
 
             # Installe zensical.
-            - name: Installation de Zensical
-              run: |
-                  pip install zensical
+            -   name: Installation de Zensical
+                run: |
+                    pip install zensical
 
             # Push sur github pages après compilation.
-            - name: Construction de la page via Zensical
-              run: |
-                  zensical build
+            -   name: Construction de la page via Zensical
+                run: |
+                    zensical build
+
+    deploy:
+        needs: build
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            # Récupère dans le runner virtuel.
+            -   name: Checkout repo
+                uses: actions/checkout@v4
+                with:
+                    ref: gh-pages
 
             # Action de page à utiliser pour migrer la page.
             - name: Setup de la page
               uses: actions/configure-pages@v5
 
-            - name: Upload d'artifacts
+            # Upload d'artifact.
+            - name: Upload d'artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: "site"
+                  path: "."
 
             - name: Déploiement sur githuib pages
               id: deployment
