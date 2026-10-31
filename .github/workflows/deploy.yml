@@ -22,11 +22,24 @@ jobs:
                   python-version: "3.x"
 
             # Installe zensical.
-            - name: Install mkdocks material
+            - name: Installation de Zensical
               run: |
                   pip install zensical
 
             # Push sur github pages après compilation.
-            - name: Deploy to github pages
+            - name: Construction de la page via Zensical
               run: |
-                  zensical deploy --force
+                  zensical build
+
+            # Action de page à utiliser pour migrer la page.
+            - name: Setup de la page
+              uses: actions/configure-pages@v5
+
+            - name: Upload d'artifacts
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: "site"
+
+            - name: Déploiement sur githuib pages
+              id: deployment
+              uses: actions/deploy-pages@v4
