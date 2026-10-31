@@ -10,41 +10,31 @@ permissions:
     id-token: write
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            # Récupère dans le runner virtuel.
-            -   name: Checkout repo
-                uses: actions/checkout@v4
-
-            # Configure python 3x.
-            -   name: Configure python
-                uses: actions/setup-python@v5
-                with:
-                    python-version: "3.x"
-
-            # Installe zensical.
-            -   name: Installation de Zensical
-                run: |
-                    pip install zensical
-
-            # Push sur github pages après compilation.
-            -   name: Construction de la page via Zensical
-                run: |
-                    zensical build
-
     deploy:
-        needs: build
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
         steps:
             # Récupère dans le runner virtuel.
-            -   name: Checkout repo
-                uses: actions/checkout@v4
-                with:
-                    ref: gh-pages
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            # Configure python 3x.
+            - name: Configure python
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.x"
+
+            # Installe zensical.
+            - name: Installation de Zensical
+              run: |
+                    pip install zensical
+
+            # Push sur github pages après compilation.
+            - name: Construction de la page via Zensical
+              run: |
+                    zensical build
 
             # Action de page à utiliser pour migrer la page.
             - name: Setup de la page
@@ -56,6 +46,6 @@ jobs:
               with:
                   path: "."
 
-            - name: Déploiement sur githuib pages
+            - name: Déploiement sur github pages
               id: deployment
               uses: actions/deploy-pages@v4
