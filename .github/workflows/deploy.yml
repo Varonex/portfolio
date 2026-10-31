@@ -4,6 +4,9 @@ on:
         branches:
             - main
 
+permissions:
+    contents: write
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -26,4 +29,4 @@ jobs:
             # Push sur github pages après compilation.
             - name: Deploy to github pages
               run: |
-                  zensical build
+                  zensical deploy --force

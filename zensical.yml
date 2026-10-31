@@ -19,5 +19,11 @@ theme:
         - navigation.top
         - content.code.copy
 
+extra_css:
+    - css/style.css
+
+extra_javascript:
+    - js/app.js
+
 nav:
     - Home: index.md
