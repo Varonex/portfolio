@@ -11,9 +11,22 @@ theme:
 
     # Couleurs.
     palette:
-        scheme: slate
-        primary: cyan
-        accent: cyan
+        # Thème clair.
+        - media: "(prefer-color-scheme: light)"
+          scheme: default
+          primary: cyan
+          accent: cyan
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark theme
+
+        - media: "(prefer-color-scheme: dark)"
+          scheme: slate
+          primary: cyan
+          accent: cyan
+          toggle:
+              icon: material/brightness-4
+              name: Switch to light theme
 
     # Contenu du site.
     features:
