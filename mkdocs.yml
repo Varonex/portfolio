@@ -19,11 +19,17 @@ theme:
         - navigation.top
         - content.code.copy
 
+# Liaison CSS.
 extra_css:
     - css/style.css
 
+# Liaison JS.
 extra_javascript:
     - js/app.js
+
+# Enlève les marques du générateur.
+extra:
+    generator: false
 
 nav:
     - Home: index.md
