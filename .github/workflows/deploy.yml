@@ -18,12 +18,12 @@ jobs:
               with:
                   python-version: "3.x"
 
-            # Installe mddocks.
+            # Installe zensical.
             - name: Install mkdocks material
               run: |
-                  pip install mkdocs-material
+                  pip install zensical
 
             # Push sur github pages après compilation.
             - name: Deploy to github pages
               run: |
-                  mkdocs gh-deploy --force
+                  zensical build
