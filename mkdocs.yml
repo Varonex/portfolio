@@ -1,0 +1,23 @@
+﻿# Configuration de mkdocs pour la génération de pages.
+site_name: Portfolio
+site_url: https://Varonex.github.io/portfolio/
+site_description: My personal portfolio, my projects and ambitions !
+site_author: Varonex
+
+theme:
+    name: material
+    language: en
+
+    # Couleurs.
+    palette:
+        scheme: slate
+        primary: cyan
+        accent: cyan
+
+    # Contenu du site.
+    features:
+        - navigation.top
+        - content.code.copy
+
+nav:
+    - Home: index.md

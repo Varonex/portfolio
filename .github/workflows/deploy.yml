@@ -1,0 +1,29 @@
+﻿name: Deploy portfolio to github pages.
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            # Récupère dans le runner virtuel.
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            # Configure python 3x.
+            - name: Configure python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.x"
+
+            # Installe mddocks.
+            - name: Install mkdocks material
+              run: |
+                  pip install mkdocs-material
+
+            # Push sur github pages après compilation.
+            - name: Deploy to github pages
+              run: |
+                  mkdocs gh-deploy --force
