@@ -4,10 +4,12 @@ site_url: https://Varonex.github.io/portfolio/
 site_description: My personal portfolio, my projects and ambitions !
 site_author: Varonex
 
+repo_name: Varonex/portfolio
+repo_url: https://github.com/Varonex/portfolio
+
 theme:
     name: material
     language: en
-    copyright: "Varonex's Portfolio &copy; 2026 by Varonex is licensed under CC BY-NC-ND 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-nd/4.0/"
 
     # Couleurs.
     palette:
@@ -33,13 +35,8 @@ theme:
         # Navigation avancée.
         - navigation.indexes
         - navigation.top
-        - navigation.instant
         - navigation.tracking
-        - navigation.tabs
-        - navigation.tabs.sticky
-        - navigation.sections
-        - navigation.expand
-        - navigation.path
+        - navigation.footer
 
         # Amélioration sommaire.
         - toc.integrate
@@ -55,6 +52,43 @@ theme:
         - search.highlight
         - search.share
 
+# Markdown additionnel.
+markdown_extensions:
+    # Inclusions.
+    - pymdownx.snippets:
+          base_path:
+              - docs
+
+    # Interprétations et parsing.
+    - admonition
+    - pymdownx.details
+    - pymdownx.magiclink
+
+    - pymdownx.highlight:
+          anchor_linenums: true
+          line_spans: __span
+          pygments_lang_class: true
+
+    - pymdownx.inlinehilite
+
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: !!python/name:pymdownx.superfences.fence_code_format
+
+    - pymdownx.tabbed:
+          alternate_style: true
+
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+          # Params modules features.
+    - toc:
+          permalink: true
+          toc_depth: 3
+
 # Liaison CSS.
 extra_css:
     - css/style.css
@@ -63,9 +97,23 @@ extra_css:
 extra_javascript:
     - js/app.js
 
-# Enlève les marques du générateur.
+# Copyright
+copyright: "Varonex's Portfolio &copy; 2026 by Varonex is licensed under CC BY-NC-ND 4.0. To view a copy of this license, visit <a href=\"https://creativecommons.org/licenses/by-nc-nd/4.0/\">CreativeCommons</a>"
+
+# Extra
 extra:
+    # Enlève les marques du générateur.
     generator: false
 
+    # Réseaux
+    social:
+        - icon: material/hub
+          link: https://varonex.github.io
+          name: Varonex's Pages
+        - icon: fontawesome/brands/github
+          link: https://github.com/Varonex
+          name: Github
+
 nav:
-    - Home: home.md
+    - Portfolio:
+        - index.md
