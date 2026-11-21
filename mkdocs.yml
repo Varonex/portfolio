@@ -115,5 +115,5 @@ extra:
           name: Github
 
 nav:
-    - Portfolio:
-        - index.md
+    - Portfolio: index.md
+    -

@@ -2,7 +2,7 @@
 on:
     push:
         branches:
-            - main
+          - main
     workflow_dispatch:
 
 permissions:
@@ -10,11 +10,12 @@ permissions:
     pages: write
     id-token: write
 
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
+
 jobs:
-    deploy:
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
+    build:
         runs-on: ubuntu-latest
         steps:
             # Récupère dans le runner virtuel.
@@ -32,7 +33,7 @@ jobs:
               run: |
                   pip install zensical
 
-                # Push sur github pages après compilation.
+              # Push sur github pages après compilation.
             - name: Construction de la page via Zensical
               run: |
                   zensical build
@@ -47,6 +48,13 @@ jobs:
               with:
                   path: "site"
 
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
             - name: Déploiement sur github pages
               id: deployment
               uses: actions/deploy-pages@v4
